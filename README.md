@@ -15,6 +15,11 @@ $ kubectl apply --filename https://github.com/shipwright-io/build/releases/downl
 $ kubectl apply --filename https://github.com/shipwright-io/build/releases/download/v0.11.0/sample-strategies.yaml
 ```
 
+### Check all available ClusterBuildStrategy (CBS) objects
+```bash
+$ kubectl get cbs
+```
+
 ### Create a new Kubernetes Secret using some environment variables
 
 ```bash
@@ -26,7 +31,7 @@ $ EMAIL=<your_email>
 $ kubectl create secret docker-registry push-secret --docker-server=$REGISTRY_SERVER --docker-username=$REGISTRY_USER --docker-password=$REGISTRY_PASSWORD --docker-email=$EMAIL
 ```
 
-### Using Kaniko (PENDING: fix error authentication)
+### Using Kaniko
 
 ```bash
 $ kubectl create -f build-kaniko.yaml
@@ -34,6 +39,8 @@ $ kubectl create -f build-kaniko.yaml
 $ kubectl get builds
 
 $ kubectl create -f buildrun-kaniko.yaml
+
+$ kubectl logs -f <kaniko-nodejs-buildrun-pod-name> -c step-build-and-push
 ```
 
 ### Using Buildpack
@@ -71,6 +78,9 @@ EOF
 ```
 
 
+
+## Documentation:
+https://github.com/shipwright-io/
 
 
 
